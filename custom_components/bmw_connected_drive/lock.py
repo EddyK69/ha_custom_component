@@ -92,7 +92,7 @@ class BMWLock(BMWConnectedDriveBaseEntity, LockEntity):
     def update(self):
         """Update state of the lock."""
         _LOGGER.debug("%s: updating data for %s", self._vehicle.name, self._attribute)
-        vehicle_state = self._vehicle.state
+        vehicle_state = self._vehicle.state.vehicle_status
 
         # Possible values: LOCKED, SECURED, SELECTIVE_LOCKED, UNLOCKED
         self._state = (

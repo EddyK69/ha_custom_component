@@ -17,7 +17,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     for vehicle in account.account.vehicles:
         entities.append(BMWDeviceTracker(account, vehicle))
-        if not vehicle.state.is_vehicle_tracking_enabled:
+        if not vehicle.state.vehicle_status.is_vehicle_tracking_enabled:
             _LOGGER.info(
                 "Tracking is (currently) disabled for vehicle %s (%s), defaulting to unknown",
                 vehicle.name,
@@ -35,9 +35,10 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
 
         self._unique_id = vehicle.vin
         self._location = (
-            vehicle.state.gps_position if vehicle.state.gps_position else (None, None)
+            vehicle.state.vehicle_status.gps_position if vehicle.state.vehicle_status.gps_position else (None, None)
         )
         self._name = vehicle.name
+        self._heading = vehicle.state.vehicle_status.gps_heading
 
     @property
     def latitude(self):
@@ -48,6 +49,14 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
     def longitude(self):
         """Return longitude value of the device."""
         return self._location[1]
+
+    @property
+    def state_attributes(self):
+        """Return the device state attributes."""
+        attr = {}
+        attr.update(super().state_attributes)
+        attr['heading'] = self._heading
+        return attr
 
     @property
     def name(self):
@@ -77,7 +86,7 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
     def update(self):
         """Update state of the decvice tracker."""
         self._location = (
-            self._vehicle.state.gps_position
-            if self._vehicle.state.is_vehicle_tracking_enabled
+            self._vehicle.state.vehicle_status.gps_position
+            if self._vehicle.state.vehicle_status.is_vehicle_tracking_enabled
             else (None, None)
         )

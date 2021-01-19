@@ -148,7 +148,7 @@ class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, BinarySensorEntity):
 
     def update(self):
         """Read new state data from the library."""
-        vehicle_state = self._vehicle.state
+        vehicle_state = self._vehicle.state.vehicle_status
 
         # device class opening: On means open, Off means closed
         if self._attribute == "lids":
