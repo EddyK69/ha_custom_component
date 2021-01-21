@@ -5,6 +5,7 @@ from bimmer_connected.state import ChargingState
 from bimmer_connected.const import (
     SERVICE_STATUS,
     SERVICE_LAST_TRIP,
+    SERVICE_ALL_TRIPS,
 )
 
 from homeassistant.const import (
@@ -38,11 +39,35 @@ ATTR_TO_HA_METRIC = {
     # LastTrip attributes
     "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
     "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recopuration": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
     "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
     "electric_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
     "saved_fuel": ["mdi:fuel", VOLUME_LITERS],
     "total_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    # AllTrips attributes
+    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
+    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "total_saved_fuel": ["mdi:fuel", VOLUME_LITERS],
 }
 
 ATTR_TO_HA_IMPERIAL = {
@@ -55,11 +80,35 @@ ATTR_TO_HA_IMPERIAL = {
     # LastTrip attributes
     "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
     "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recopuration": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
     "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
     "electric_distance": ["mdi:map-marker-distance", LENGTH_MILES],
     "saved_fuel": ["mdi:fuel", VOLUME_GALLONS],
     "total_distance": ["mdi:map-marker-distance", LENGTH_MILES],
+    # AllTrips attributes
+    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
+    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_MILES],
+    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_MILES],
+    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_MILES],
+    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_MILES],
+    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_MILES],
+    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_MILES],
+    "total_saved_fuel": ["mdi:fuel", VOLUME_GALLONS],
 }
 
 ATTR_TO_HA_GENERIC = {
@@ -71,6 +120,11 @@ ATTR_TO_HA_GENERIC = {
     "date": ["mdi:calendar-blank", None],
     "duration": ["mdi:timer-outline", TIME_MINUTES],
     "electric_distance_ratio": ["mdi:percent-outline", PERCENTAGE],
+    # AllTrips attributes
+    "battery_size_max": ["mdi:battery-charging-high", ENERGY_WATT_HOUR],
+    "reset_date": ["mdi:calendar-blank", None],
+    "saved_co2": ["mdi:tree-outline", MASS_KILOGRAMS],
+    "saved_co2_green_energy": ["mdi:tree-outline", MASS_KILOGRAMS],
 }
 
 ATTR_TO_HA_METRIC.update(ATTR_TO_HA_GENERIC)
@@ -98,6 +152,34 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                         entities.append(device)
             if service == SERVICE_LAST_TRIP:
                 service_attr = vehicle.state.last_trip.available_attributes
+            if service == SERVICE_ALL_TRIPS:
+                for attribute_name in vehicle.state.all_trips.available_attributes:
+                    # Add extra sensors for sensor-attributes
+                    if attribute_name in ("average_combined_consumption", "average_electric_consumption",
+                        "average_recuperation", "chargecycle_range", "total_electric_distance"):
+                        for attr in ["community_average", "community_high", "community_low", "user_average"]:
+                            device = BMWConnectedDriveSensor(
+                                account, vehicle, f"{attribute_name}_{attr}", attribute_info, service
+                            )
+                            entities.append(device)
+                        if attribute_name == "chargecycle_range":
+                            for attr in ["user_current_charge_cycle", "user_high"]:
+                                device = BMWConnectedDriveSensor(
+                                    account, vehicle, f"{attribute_name}_{attr}", attribute_info, service
+                                )
+                                entities.append(device)
+                        if attribute_name == "total_electric_distance":
+                            for attr in ["user_total"]:
+                                device = BMWConnectedDriveSensor(
+                                    account, vehicle, f"{attribute_name}_{attr}", attribute_info, service
+                                )
+                                entities.append(device)
+                    else:
+                        device = BMWConnectedDriveSensor(
+                            account, vehicle, attribute_name, attribute_info, service
+                        )
+                        entities.append(device)
+
             if service_attr:
                 for attribute_name in service_attr:
                     device = BMWConnectedDriveSensor(
@@ -169,6 +251,7 @@ class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, Entity):
         _LOGGER.debug("Updating %s", self._vehicle.name)
         vehicle_state = self._vehicle.state
         vehicle_last_trip = self._vehicle.state.last_trip
+        vehicle_all_trips = self._vehicle.state.all_trips
         if self._attribute == "charging_status":
             self._state = getattr(vehicle_state, self._attribute).value
         elif self.unit_of_measurement == VOLUME_GALLONS:
@@ -183,3 +266,16 @@ class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, Entity):
             self._state = getattr(vehicle_state, self._attribute)
         elif self._service == SERVICE_LAST_TRIP:
             self._state = getattr(vehicle_last_trip, self._attribute)
+        elif self._service == SERVICE_ALL_TRIPS:
+            attr = None
+            attr_sub = None
+            for attribute in ["average_combined_consumption", "average_electric_consumption",
+                "average_recuperation", "chargecycle_range", "total_electric_distance"]:
+                if attribute in self._attribute:
+                    attr = attribute
+                    attr_sub = self._attribute.replace(f"{attribute}_", "")
+                    break
+            if attr_sub:
+                self._state = getattr(getattr(vehicle_all_trips, attr), attr_sub)
+            else:
+                self._state = getattr(vehicle_all_trips, self._attribute)
