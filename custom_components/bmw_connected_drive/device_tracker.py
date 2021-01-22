@@ -38,6 +38,7 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
             vehicle.state.gps_position if vehicle.state.gps_position else (None, None)
         )
         self._name = vehicle.name
+        self._heading = vehicle.state.vehicle_status.gps_heading
 
     @property
     def latitude(self):
@@ -70,6 +71,14 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
         return "mdi:car"
 
     @property
+    def state_attributes(self):
+        """Return the device state attributes."""
+        attr = {}
+        attr.update(super().state_attributes)
+        attr['heading'] = self._heading
+        return attr
+
+    @property
     def force_update(self):
         """All updates do not need to be written to the state machine."""
         return False
@@ -81,3 +90,4 @@ class BMWDeviceTracker(BMWConnectedDriveBaseEntity, TrackerEntity):
             if self._vehicle.state.is_vehicle_tracking_enabled
             else (None, None)
         )
+        self._heading = self._vehicle.state.vehicle_status.gps_heading
