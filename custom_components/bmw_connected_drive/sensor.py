@@ -32,114 +32,114 @@ from .const import CONF_ACCOUNT, DATA_ENTRIES
 _LOGGER = logging.getLogger(__name__)
 
 ATTR_TO_HA_METRIC = {
-    "mileage": ["mdi:speedometer", LENGTH_KILOMETERS],
-    "remaining_range_total": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "remaining_range_electric": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "remaining_range_fuel": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "max_range_electric": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "remaining_fuel": ["mdi:gas-station", VOLUME_LITERS],
+    "mileage": ["mdi:speedometer", LENGTH_KILOMETERS, True],
+    "remaining_range_total": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "remaining_range_electric": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "remaining_range_fuel": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "max_range_electric": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "remaining_fuel": ["mdi:gas-station", VOLUME_LITERS, True],
     # LastTrip attributes
-    "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "electric_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "saved_fuel": ["mdi:fuel", VOLUME_LITERS],
-    "total_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
+    "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "electric_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "saved_fuel": ["mdi:fuel", VOLUME_LITERS, True],
+    "total_distance": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
     # AllTrips attributes
-    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}"],
-    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_KILOMETERS],
-    "total_saved_fuel": ["mdi:fuel", VOLUME_LITERS],
+    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", False],
+    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_KILOMETERS}", True],
+    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS, True],
+    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_KILOMETERS, False],
+    "total_saved_fuel": ["mdi:fuel", VOLUME_LITERS, False],
 }
 
 ATTR_TO_HA_IMPERIAL = {
-    "mileage": ["mdi:speedometer", LENGTH_MILES],
-    "remaining_range_total": ["mdi:map-marker-distance", LENGTH_MILES],
-    "remaining_range_electric": ["mdi:map-marker-distance", LENGTH_MILES],
-    "remaining_range_fuel": ["mdi:map-marker-distance", LENGTH_MILES],
-    "max_range_electric": ["mdi:map-marker-distance", LENGTH_MILES],
-    "remaining_fuel": ["mdi:gas-station", VOLUME_GALLONS],
+    "mileage": ["mdi:speedometer", LENGTH_MILES, True],
+    "remaining_range_total": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "remaining_range_electric": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "remaining_range_fuel": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "max_range_electric": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "remaining_fuel": ["mdi:gas-station", VOLUME_GALLONS, True],
     # LastTrip attributes
-    "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "electric_distance": ["mdi:map-marker-distance", LENGTH_MILES],
-    "saved_fuel": ["mdi:fuel", VOLUME_GALLONS],
-    "total_distance": ["mdi:map-marker-distance", LENGTH_MILES],
+    "average_combined_consumption": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "average_electric_consumption": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "average_recuperation": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "electric_distance": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "saved_fuel": ["mdi:fuel", VOLUME_GALLONS, True],
+    "total_distance": ["mdi:map-marker-distance", LENGTH_MILES, True],
     # AllTrips attributes
-    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}"],
-    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_MILES],
-    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_MILES],
-    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_MILES],
-    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_MILES],
-    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_MILES],
-    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_MILES],
-    "total_saved_fuel": ["mdi:fuel", VOLUME_GALLONS],
+    "average_combined_consumption_community_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_combined_consumption_community_high": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_combined_consumption_community_low": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_combined_consumption_user_average": ["mdi:flash", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "average_electric_consumption_community_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_electric_consumption_community_high": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_electric_consumption_community_low": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_electric_consumption_user_average": ["mdi:power-plug-outline", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "average_recuperation_community_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_recuperation_community_high": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_recuperation_community_low": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", False],
+    "average_recuperation_user_average": ["mdi:recycle-variant", f"{ENERGY_KILO_WATT_HOUR}/100{LENGTH_MILES}", True],
+    "chargecycle_range_community_average": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "chargecycle_range_community_high": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "chargecycle_range_community_low": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "chargecycle_range_user_average": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "chargecycle_range_user_current_charge_cycle": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "chargecycle_range_user_high": ["mdi:map-marker-distance", LENGTH_MILES, True],
+    "total_electric_distance_community_average": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "total_electric_distance_community_high": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "total_electric_distance_community_low": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "total_electric_distance_user_average": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "total_electric_distance_user_total": ["mdi:map-marker-distance", LENGTH_MILES, False],
+    "total_saved_fuel": ["mdi:fuel", VOLUME_GALLONS, False],
 }
 
 ATTR_TO_HA_GENERIC = {
-    "charging_time_remaining": ["mdi:update", TIME_HOURS],
-    "charging_status": ["mdi:battery-charging", None],
+    "charging_time_remaining": ["mdi:update", TIME_HOURS, True],
+    "charging_status": ["mdi:battery-charging", None, True],
     # No icon as this is dealt with directly as a special case in icon()
-    "charging_level_hv": [None, PERCENTAGE],
+    "charging_level_hv": [None, PERCENTAGE, True],
     # LastTrip attributes
-    "date": ["mdi:calendar-blank", None],
-    "duration": ["mdi:timer-outline", TIME_MINUTES],
-    "electric_distance_ratio": ["mdi:percent-outline", PERCENTAGE],
+    "date": ["mdi:calendar-blank", None, True],
+    "duration": ["mdi:timer-outline", TIME_MINUTES, True],
+    "electric_distance_ratio": ["mdi:percent-outline", PERCENTAGE, True],
     # AllTrips attributes
-    "battery_size_max": ["mdi:battery-charging-high", ENERGY_WATT_HOUR],
-    "reset_date": ["mdi:calendar-blank", None],
-    "saved_co2": ["mdi:tree-outline", MASS_KILOGRAMS],
-    "saved_co2_green_energy": ["mdi:tree-outline", MASS_KILOGRAMS],
+    "battery_size_max": ["mdi:battery-charging-high", ENERGY_WATT_HOUR, False],
+    "reset_date": ["mdi:calendar-blank", None, False],
+    "saved_co2": ["mdi:tree-outline", MASS_KILOGRAMS, False],
+    "saved_co2_green_energy": ["mdi:tree-outline", MASS_KILOGRAMS, False],
     # ChargingProfile attributes
-    "is_pre_entry_climatization_enabled": ["mdi:snowflake", None],
-    "preferred_charging_window_start_time": ["mdi:dock-window", None],
-    "preferred_charging_window_end_time": ["mdi:dock-window", None],
-    "pre_entry_climatization_timer_1_timer_enabled": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_1_departure_time": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_1_weekdays": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_2_timer_enabled": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_2_departure_time": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_2_weekdays": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_3_timer_enabled": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_3_departure_time": ["mdi:av-timer", None],
-    "pre_entry_climatization_timer_3_weekdays": ["mdi:av-timer", None],
+    "is_pre_entry_climatization_enabled": ["mdi:snowflake", None, True],
+    "preferred_charging_window_start_time": ["mdi:dock-window", None, False],
+    "preferred_charging_window_end_time": ["mdi:dock-window", None, False],
+    "pre_entry_climatization_timer_1_timer_enabled": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_1_departure_time": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_1_weekdays": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_2_timer_enabled": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_2_departure_time": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_2_weekdays": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_3_timer_enabled": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_3_departure_time": ["mdi:av-timer", None, False],
+    "pre_entry_climatization_timer_3_weekdays": ["mdi:av-timer", None, False],
 }
 
 ATTR_TO_HA_METRIC.update(ATTR_TO_HA_GENERIC)
@@ -258,8 +258,14 @@ class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, Entity):
             return icon_for_battery_level(
                 battery_level=vehicle_state.charging_level_hv, charging=charging_state
             )
-        icon, _ = self._attribute_info.get(self._attribute, [None, None])
+        icon = self._attribute_info.get(self._attribute, [None, None, None])[0]
         return icon
+
+    @property
+    def entity_registry_enabled_default(self) -> bool:
+        """Return if the entity should be enabled when first added to the entity registry."""
+        enabled_default = self._attribute_info.get(self._attribute, [None, None, True])[2]
+        return enabled_default
 
     @property
     def state(self):
@@ -273,7 +279,7 @@ class BMWConnectedDriveSensor(BMWConnectedDriveBaseEntity, Entity):
     @property
     def unit_of_measurement(self) -> str:
         """Get the unit of measurement."""
-        unit = self._attribute_info.get(self._attribute, [None, None])[1]
+        unit = self._attribute_info.get(self._attribute, [None, None, None])[1]
         return unit
 
     def update(self) -> None:
